@@ -19,6 +19,18 @@ jQuery(function( $ ){
 				};
 								  
 			},
+			results: function ( data ) {
+				return {
+					results: $.map( data.geonames, function ( item ) {
+						if( ! item || item.countryIso == null || item.countryIso !== wc_params.default_country ) return;
+						return {
+							id: item.name,
+							city_id: item.id,
+							text: item.cityName
+						}
+					})
+				};
+			},
 			processResults: function ( data ) {
 				return {
 					results: $.map( data.geonames, function ( item ) {
